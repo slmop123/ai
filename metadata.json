@@ -1,0 +1,6 @@
+{
+  "name": "رحلة الذكاء الاصطناعي - شاهين 01",
+  "description": "عرض تفاعلي رائد بالزجاج الرقمي يقوده رئيس مجلس الطلاب شاهين 01 لشرح حقيقة الذكاء الاصطناعي وهندسة الأوامر",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

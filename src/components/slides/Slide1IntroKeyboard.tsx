@@ -12,6 +12,7 @@ import {
   Lightbulb,
   MessageSquare
 } from 'lucide-react';
+import { IMAGES } from '../../constants/images';
 
 interface Slide1Props {
   onOpenFeedback: () => void;
@@ -110,7 +111,7 @@ export const Slide1IntroKeyboard: React.FC<Slide1Props> = ({ onOpenFeedback, onN
           <div className="w-full md:w-72 shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-[#070b1e]/90 p-4 shadow-xl shadow-violet-950/50">
             <div className="relative aspect-video rounded-xl overflow-hidden mb-3 border border-white/10">
               <img
-                src="/src/assets/images/ai_keyboard_prediction_1793977318785.jpg"
+                src={IMAGES.keyboardPrediction}
                 alt="AI Prediction Keyboard"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

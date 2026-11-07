@@ -13,6 +13,7 @@ import {
   ExternalLink,
   MessageSquare
 } from 'lucide-react';
+import { IMAGES } from '../../constants/images';
 
 interface Slide4Props {
   onNextSlide: () => void;
@@ -175,7 +176,7 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
           {/* Visual Scene on Left */}
           <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-white/10 relative aspect-[4/3] group shadow-xl">
             <img
-              src="/src/assets/images/ai_chile_visa_story_1793977319366.jpg"
+              src={IMAGES.chileVisa}
               alt="Chile Visa Hallucination Scene"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               referrerPolicy="no-referrer"

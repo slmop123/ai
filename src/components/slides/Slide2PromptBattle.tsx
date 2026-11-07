@@ -20,6 +20,7 @@ import {
   Layers,
   ChevronRight
 } from 'lucide-react';
+import { IMAGES } from '../../constants/images';
 
 interface Slide2Props {
   onNextSlide: () => void;
@@ -255,7 +256,7 @@ export const Slide2PromptBattle: React.FC<Slide2Props> = ({ onNextSlide }) => {
                   <div className="p-3 rounded-2xl bg-yellow-950/50 border border-yellow-500/40 space-y-2 relative">
                     <div className="aspect-[4/3] rounded-xl overflow-hidden border border-yellow-500/30 relative">
                       <img
-                        src="/src/assets/images/greek_salad_food_1793993829608.jpg"
+                        src={IMAGES.greekSalad}
                         alt="Fresh Greek Salad"
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
@@ -464,7 +465,7 @@ export const Slide2PromptBattle: React.FC<Slide2Props> = ({ onNextSlide }) => {
                   <div className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-cyan-400/50 transition-all space-y-2 group/car shadow-lg">
                     <div className="aspect-[4/3] rounded-xl overflow-hidden border border-cyan-500/30 relative">
                       <img
-                        src="/src/assets/images/audi_etron_gt_car_1793993827318.jpg"
+                        src={IMAGES.audiEtron}
                         alt="Audi RS e-tron GT Real Photo"
                         className="w-full h-full object-cover group-hover/car:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
@@ -501,7 +502,7 @@ export const Slide2PromptBattle: React.FC<Slide2Props> = ({ onNextSlide }) => {
                   <div className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-violet-400/50 transition-all space-y-2 group/car shadow-lg">
                     <div className="aspect-[4/3] rounded-xl overflow-hidden border border-violet-500/30 relative">
                       <img
-                        src="/src/assets/images/mercedes_g63_car_1793993828847.jpg"
+                        src={IMAGES.mercedesG63}
                         alt="Mercedes-AMG G63 Real Photo"
                         className="w-full h-full object-cover group-hover/car:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
@@ -538,7 +539,7 @@ export const Slide2PromptBattle: React.FC<Slide2Props> = ({ onNextSlide }) => {
                   <div className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-emerald-400/50 transition-all space-y-2 group/car shadow-lg">
                     <div className="aspect-[4/3] rounded-xl overflow-hidden border border-emerald-500/30 relative">
                       <img
-                        src="/src/assets/images/porsche_cayenne_car_1793993830652.jpg"
+                        src={IMAGES.porscheCayenne}
                         alt="Porsche Cayenne Coupe Real Photo"
                         className="w-full h-full object-cover group-hover/car:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"

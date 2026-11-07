@@ -15,6 +15,7 @@ import {
   BookOpen,
   UserCheck
 } from 'lucide-react';
+import { IMAGES } from '../../constants/images';
 
 interface Slide5Props {
   onRestartPresentation: () => void;
@@ -49,7 +50,7 @@ export const Slide5Roadmap8Weeks: React.FC<Slide5Props> = ({ onRestartPresentati
       {/* Cyber Academy Roadmap Image Card */}
       <div className="rounded-2xl overflow-hidden border border-white/10 relative h-40 sm:h-52 group shadow-2xl">
         <img
-          src="/src/assets/images/ai_roadmap_cyber_1793977320129.jpg"
+          src={IMAGES.roadmapCyber}
           alt="Cyber AI Academy 8-Week Roadmap"
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
           referrerPolicy="no-referrer"

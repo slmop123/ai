@@ -13,6 +13,7 @@ import {
   ExternalLink,
   MessageSquare
 } from 'lucide-react';
+import { IMAGES } from '../../constants/images';
 
 interface Slide5NoFatwaProps {
   onNextSlide: () => void;
@@ -113,7 +114,7 @@ export const Slide5NoFatwaInAI: React.FC<Slide5NoFatwaProps> = ({ onNextSlide })
                 {/* The Screenshot Image Display */}
                 <div className="rounded-xl overflow-hidden border border-white/10 bg-[#0a0a14] relative">
                   <img
-                    src="/src/assets/images/screenshot_chatgpt_eid_fatwa.png"
+                    src={IMAGES.chatgptFatwaScreenshot}
                     alt="ChatGPT Eid Fatwa Hallucination Screenshot"
                     className="w-full h-auto object-contain max-h-[280px] mx-auto group-hover:scale-[1.02] transition-transform duration-300"
                     referrerPolicy="no-referrer"

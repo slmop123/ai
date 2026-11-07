@@ -44,10 +44,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-bold text-white tracking-wide font-cairo whitespace-nowrap">
-              شاهين 01 <span className="text-cyan-400 font-normal text-xs mr-1">رئيس مجلس الطلاب</span>
-            </span>
-            <span className="text-[11px] text-slate-400 whitespace-nowrap">
+            <span className="text-sm font-bold text-white tracking-wide font-cairo whitespace-nowrap">
               ورشة الذكاء الاصطناعي التفاعلية
             </span>
           </div>

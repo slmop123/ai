@@ -28,6 +28,10 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
   // 1: The Question to ChatGPT, 2: The Hallucinated Confident Answer, 3: The Airport Reality Shock!
   const [storyStage, setStoryStage] = useState<1 | 2 | 3>(1);
 
+  // Visual toggle between real viral photo and concept art
+  const [visualMode, setVisualMode] = useState<'real_tweet' | 'concept'>('real_tweet');
+  const [isPhotoZoomed, setIsPhotoZoomed] = useState(false);
+
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header */}
@@ -135,9 +139,9 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
               <Plane className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs text-rose-400 font-bold">قصة واقعية موثقة</span>
+              <span className="text-xs text-rose-400 font-bold">توثيق بالصورة الحقيقية للمسافر</span>
               <h3 className="text-lg font-bold text-white font-cairo">
-                كارثة مطار سانتياغو: قصة فيزا تشيلي
+                كارثة مطار سانتياغو: قصة فيزا تشيلي الحقيقية
               </h3>
             </div>
           </div>
@@ -172,47 +176,117 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
         </div>
 
         {/* Story Interactive Stage Viewport */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          {/* Visual Scene on Left */}
-          <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-white/10 relative aspect-[4/3] group shadow-xl">
-            <img
-              src={IMAGES.chileVisa}
-              alt="Chile Visa Hallucination Scene"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060814] via-black/30 to-transparent" />
-            <div className="absolute bottom-3 right-3 left-3 flex items-center justify-between text-xs text-slate-300 bg-black/60 backdrop-blur-md p-2 rounded-xl border border-white/10">
-              <span className="flex items-center gap-1.5 text-rose-300">
-                <Plane className="w-3.5 h-3.5" />
-                <span>مطار تشيلي الدولي</span>
-              </span>
-              <span className="font-mono text-amber-300">Confidently Incorrect</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Visual Scene on Left with Toggle between Real Tweet Photo & Concept Art */}
+          <div className="lg:col-span-6 space-y-3">
+            {/* View Toggle Tabs */}
+            <div className="flex items-center justify-between bg-black/40 p-1.5 rounded-2xl border border-white/10">
+              <button
+                onClick={() => setVisualMode('real_tweet')}
+                className={`flex-1 py-1.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  visualMode === 'real_tweet'
+                    ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-rose-600/30'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <span>📸 الصورة الحقيقية للمسافر بالمطار</span>
+              </button>
+              <button
+                onClick={() => setVisualMode('concept')}
+                className={`py-1.5 px-3 rounded-xl text-xs font-medium transition-all flex items-center justify-center gap-1.5 ${
+                  visualMode === 'concept'
+                    ? 'bg-white/15 text-white font-bold'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <span>🎨 مشهد تمثيلي</span>
+              </button>
+            </div>
+
+            {/* Image Container */}
+            <div className="rounded-2xl overflow-hidden border border-white/15 relative bg-[#090b16] group shadow-2xl">
+              {visualMode === 'real_tweet' ? (
+                <div className="relative">
+                  {/* Real Photo Viewer */}
+                  <div
+                    onClick={() => setIsPhotoZoomed(true)}
+                    className="cursor-zoom-in relative overflow-hidden bg-black flex items-center justify-center min-h-[360px] max-h-[460px]"
+                  >
+                    <img
+                      src={IMAGES.chileVisaRealTweet}
+                      alt="التغريدة والصورة الحقيقية للمسافر الأسترالي في المطار مع هلوسة فيزا تشيلي"
+                      className="w-full max-h-[460px] object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-3 right-3 bg-red-600/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-white border border-red-400/40 shadow-lg flex items-center gap-1">
+                      <span>🔴 وثيقة أصلية متداولة</span>
+                    </div>
+                    <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] text-slate-300 border border-white/10 flex items-center gap-1">
+                      <ExternalLink className="w-3 h-3 text-cyan-400" />
+                      <span>انقر للتكبير والتفحص</span>
+                    </div>
+                  </div>
+
+                  {/* Photo details caption card */}
+                  <div className="p-3 bg-gradient-to-t from-black via-black/80 to-transparent border-t border-white/10 space-y-1.5 text-right">
+                    <div className="flex items-center justify-between text-xs text-rose-300 font-bold">
+                      <span>تغريدة المسافر الأسترالي العالق في المطار</span>
+                      <span className="font-mono text-[11px] text-amber-300">Viral X / Twitter</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-relaxed font-tajawal">
+                      النص على الصورة: <span className="text-white font-semibold font-mono" dir="ltr">"When ChatGPT tells you Australians don't need a visa to enter Chile but it's wrong and too late now"</span>
+                    </p>
+                    <p className="text-[11px] text-slate-400 font-tajawal">
+                      تظهر شاشة الهاتف بوضوح رد ChatGPT الخاطئ: <span className="text-cyan-300" dir="ltr">"Yes, as an Australian citizen, you do not need a visa..."</span> مما كبّده ترحيلاً فورياً وخسارة فادحة!
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="relative aspect-[4/3]">
+                  <img
+                    src={IMAGES.chileVisa}
+                    alt="Chile Visa Hallucination Scene"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060814] via-black/30 to-transparent" />
+                  <div className="absolute bottom-3 right-3 left-3 flex items-center justify-between text-xs text-slate-300 bg-black/60 backdrop-blur-md p-2 rounded-xl border border-white/10">
+                    <span className="flex items-center gap-1.5 text-rose-300">
+                      <Plane className="w-3.5 h-3.5" />
+                      <span>مطار تشيلي الدولي</span>
+                    </span>
+                    <span className="font-mono text-amber-300">Confidently Incorrect</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Interactive Story Progression on Right */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-6 space-y-4">
             {storyStage === 1 && (
               <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3 animate-fadeIn">
                 <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span className="text-cyan-400 font-bold">المحطة 1: التخطيط للسفر</span>
-                  <span>قبل المغادرة بأسبوع</span>
+                  <span className="text-cyan-400 font-bold">المحطة 1: التخطيط للسفر والسؤال</span>
+                  <span>قبل السفر إلى سانتياغو</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-violet-950/40 border border-violet-500/30 text-white text-xs leading-relaxed">
-                  💬 المسافر يكتب للذكاء الاصطناعي:
-                  <p className="text-sm font-bold text-cyan-200 mt-1">
-                    "هل أحتاج تأشيرة (فيزا) مسبقة للسفر إلى جمهورية تشيلي بجوازي؟"
+                  💬 المسافر يسأل ChatGPT في هاتفه:
+                  <p className="text-sm font-bold text-cyan-200 mt-1" dir="ltr">
+                    "Do Australians need a visa to visit Chile?"
+                  </p>
+                  <p className="text-xs text-slate-300 mt-1">
+                    (هل يحتاج مواطنو أستراليا إلى تأشيرة مسبقة لدخول تشيلي؟)
                   </p>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed font-tajawal">
-                  المسافر أراد توفير الوقت بدلاً من زيارة موقع وزارة الخارجية، وظن أن الذكاء الاصطناعي يملك تحديثات فورية موثوقة بنسبة 100%.
+                  المسافر أراد توفير الوقت بدلاً من التحقق من موقع السفارة التشيلية أو وزارة الخارجية الرسمية، وظن أن الذكاء الاصطناعي يعطي بيانات قانونية مضمونة ومحدثة.
                 </p>
                 <button
                   onClick={() => setStoryStage(2)}
                   className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-bold transition-all flex items-center gap-1.5"
                 >
-                  <span>شاهد رد الذكاء الاصطناعي ➔</span>
+                  <span>شاهد رد الذكاء الاصطناعي المهلوس ➔</span>
                 </button>
               </div>
             )}
@@ -220,17 +294,20 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
             {storyStage === 2 && (
               <div className="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30 space-y-3 animate-fadeIn">
                 <div className="flex items-center justify-between text-xs text-amber-400">
-                  <span className="font-bold">المحطة 2: الرد المهلوس بثقة عمياء</span>
-                  <span>توليد خيالي</span>
+                  <span className="font-bold">المحطة 2: الرد المهلوس بثقة عمياء 100%</span>
+                  <span>توليد كاذب بدون شك</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-100 text-xs leading-relaxed space-y-1">
-                  <div className="font-bold text-amber-300">🤖 رد الذكاء الاصطناعي الواثق:</div>
-                  <p className="text-xs font-mono">
-                    "يسرني إخبارك بأنك <span className="underline font-bold text-white">لا تحتاج لأي تأشيرة مسبقة</span> لدخول تشيلي! يمكنك الدخول مجاناً والإقامة لمدة 90 يوماً كسائح. رحلة سعيدة!"
+                <div className="p-3.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-100 text-xs leading-relaxed space-y-2">
+                  <div className="font-bold text-amber-300">🤖 رد ChatGPT على هاتف المسافر (الموجود في الصورة):</div>
+                  <p className="text-xs font-mono text-cyan-200" dir="ltr">
+                    "Yes, as an Australian citizen, you do not need a visa to enter Chile for tourism or business purposes if your stay is 90 days or less..."
+                  </p>
+                  <p className="text-xs text-slate-200">
+                    الترجمة: "نعم، كمواطن أسترالي، لا تحتاج إلى تأشيرة لدخول تشيلي إذا كانت إقامتك 90 يوماً أو أقل!"
                   </p>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed font-tajawal">
-                  لاحظ كيف صيغت الإجابة بأسلوب ودي وفصيح بدون أدنى تردد أو كلمة شك واحدة! هذا هو جوهر الهلوسة.
+                  لاحظ في صورة المسافر الحقيقية: الإجابة صيغت بأسلوب رسمي واثق للغاية بدون وضع أي تنبيه أو طلب مراجعة الموقع الرسمي، فاطمأن المسافر وصعد إلى الطائرة!
                 </p>
                 <button
                   onClick={() => setStoryStage(3)}
@@ -248,18 +325,21 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
                     <XCircle className="w-3.5 h-3.5" />
                     <span>المحطة 3: الصدمة الكبرى في الجوازات!</span>
                   </span>
-                  <span className="font-mono text-red-300 font-bold">رفض الدخول</span>
+                  <span className="font-mono text-red-300 font-bold">رفض الدخول والترحيل</span>
                 </div>
                 <div className="p-4 rounded-xl bg-red-950/70 border border-red-500/50 text-red-200 text-xs leading-relaxed space-y-2">
                   <div className="text-sm font-bold text-white">
                     🚫 ختم المطار: ENTRY DENIED - ترحيل فوري
                   </div>
-                  <p className="text-xs text-slate-200">
-                    عند وصول المسافر لكاونتر الجوازات في سانتياغو، طالبوه بالفيزا المسبقة. وعندما أخبرهم: "شات جي بي تي قال لي لا أحتاج فيزا!"، ضحك الضابط ورفض دخوله، وتم ترحيله على أول طائرة بعد خسارة تذاكر وفنادق بآلاف الدولارات!
+                  <p className="text-xs text-slate-200 leading-relaxed">
+                    عند وصول المسافر لكاونتر جوازات مطار سانتياغو الدولي، طُلب منه إبراز الفيزا المسبقة الإجبارية للأستراليين. وعندما قال: "شات جي بي تي أكد لي أنني لست بحاجة لفيزا!"، رفضت السلطات دخوله وأُلزم بالعودة وترحيله فوراً، وخسر آلاف الدولارات في التذاكر والفنادق!
+                  </p>
+                  <p className="text-xs text-amber-300">
+                    📸 فالتقط هذه الصورة الساخرة الحزينة لهاتفه داخل المطار ونشرها لتوعية العالم بعدم تصديق الذكاء الاصطناعي في القرارات الحساسة!
                   </p>
                 </div>
                 <div className="flex items-center justify-between pt-1">
-                  <span className="text-[11px] text-slate-400 font-mono">المصدر: قضايا حقيقية موثقة عالمياً</span>
+                  <span className="text-[11px] text-slate-400 font-mono">حقيقة واقعية وموثقة عبر الإنترنت</span>
                   <button
                     onClick={() => setStoryStage(1)}
                     className="text-xs text-slate-400 hover:text-white flex items-center gap-1"
@@ -283,6 +363,42 @@ export const Slide4HallucinationChile: React.FC<Slide4Props> = ({ onNextSlide })
           </div>
         </div>
       </div>
+
+      {/* Modal for Zooming the Real Photo */}
+      {isPhotoZoomed && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setIsPhotoZoomed(false)}
+        >
+          <div
+            className="relative max-w-2xl w-full bg-[#0d1020] border border-white/20 rounded-3xl p-4 overflow-hidden shadow-2xl space-y-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-white/10">
+              <div className="flex items-center gap-2 text-rose-400 text-xs font-bold">
+                <Plane className="w-4 h-4" />
+                <span>التغريدة الأصلية لحادثة هلوسة فيزا تشيلي</span>
+              </div>
+              <button
+                onClick={() => setIsPhotoZoomed(false)}
+                className="p-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs"
+              >
+                ✕ إغلاق
+              </button>
+            </div>
+            <div className="max-h-[75vh] overflow-auto rounded-xl flex justify-center bg-black">
+              <img
+                src={IMAGES.chileVisaRealTweet}
+                alt="الصورة الحقيقية لمسافر تشيلي مع شات جي بي تي"
+                className="w-full object-contain max-h-[72vh]"
+              />
+            </div>
+            <div className="text-center text-xs text-slate-300">
+              "When ChatGPT tells you Australians don't need a visa to enter Chile but it's wrong and too late now"
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* The Triple Fact-Checking Shield */}
       <div className="rounded-2xl p-6 glass-panel border border-cyan-500/20 space-y-4">

@@ -9,11 +9,13 @@ import mercedesG63 from '../assets/images/mercedes_g63_car_1793993828847.jpg';
 import porscheCayenne from '../assets/images/porsche_cayenne_car_1793993830652.jpg';
 import greekSalad from '../assets/images/greek_salad_food_1793993829608.jpg';
 import chatgptFatwaScreenshot from '../assets/images/screenshot_chatgpt_eid_fatwa.png';
+import chileVisaRealTweet from '../assets/images/chile_visa_hallucination_tweet.png';
 
 export const IMAGES = {
   keyboardPrediction,
   promptDuel,
   chileVisa,
+  chileVisaRealTweet,
   roadmapCyber,
   divineLoftiness,
   audiEtron,

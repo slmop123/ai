@@ -29,7 +29,7 @@ interface Slide2Props {
 export const Slide2PromptBattle: React.FC<Slide2Props> = ({ onNextSlide }) => {
   // Step progression:
   // 1: Big Question only ("من منكم يعرف كيف يكتب أمر...")
-  // 2: Ordinary Prompt revealed ("اصنع لي موقع تجارة إلكترونية") + "توليد الموقع" button
+  // 2: Ordinary Prompt revealed ("اصنع لي موقع تجارة إلكترونية باللون الأصفر واللغة العربية") + "توليد الموقع" button
   // 3: Chaotic Bad Website generated (Car, Salad, T-shirt in SAR, MAD, USD) + "انتقال إلى البرومبت الاحترافي" button
   // 4: Professional Prompt revealed (Full paragraph, color-coded continuous text) + "توليد الموقع الاحترافي" button
   // 5: Professional Luxury Moroccan Car Store generated with real car photos + full comparison
@@ -165,7 +165,7 @@ export const Slide2PromptBattle: React.FC<Slide2Props> = ({ onNextSlide }) => {
               <span className="text-red-400">بدون دور · بدون سياق · بدون قيود</span>
             </div>
             <div className="text-base sm:text-lg font-bold text-red-200 font-mono bg-red-950/40 p-3.5 rounded-xl border border-red-500/30">
-              "اصنع لي موقع تجارة إلكترونية"
+              "اصنع لي موقع تجارة إلكترونية باللون الأصفر واللغة العربية"
             </div>
           </div>
 
